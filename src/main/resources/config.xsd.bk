@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/NewXMLSchema" xmlns:xsd="http://www.example.org/NewXMLSchema" elementFormDefault="qualified">
+	<element name="config">
+		<complexType>
+			<sequence>
+				<element name="datasets" minOccurs="0">
+					<complexType>
+						<sequence>
+							<element name="dataset" maxOccurs="unbounded" minOccurs="0">
+								<complexType>
+									<sequence>
+										<element name="attributes" type="xsd:arguments" minOccurs="0" />
+									</sequence>
+									<attribute name="id" type="string" use="required" />
+									<attribute name="type" type="string" use="required" />
+								</complexType>
+							</element>
+						</sequence>
+					</complexType>
+				</element>
+			</sequence>
+		</complexType>
+	</element>
+	<complexType name="renderer">
+		<sequence>
+			<element name="arguments" type="xsd:arguments" minOccurs="0" />
+		</sequence>
+	</complexType>
+	<complexType name="arguments">
+		<sequence>
+			<element name="argument" type="xsd:argument" maxOccurs="unbounded" minOccurs="0" />
+		</sequence>
+	</complexType>
+	<complexType name="argument">
+		<attribute name="name" type="string" />
+		<attribute name="host" type="string" />
+		<attribute name="core" type="string" />
+		<attribute name="create_time" type="string" />
+		<attribute name="username" type="string" />
+		<attribute name="password" type="string" />
+		<attribute name="dbname" type="string" />
+		<attribute name="dbtable" type="string" />
+		<attribute name="consistency_id" type="string" />
+	</complexType>
+</schema>

@@ -1,27 +1,23 @@
 package com.gbdata.listener;
 
-import java.util.TimerTask;
+import org.apache.commons.lang3.time.FastDateFormat;
+import org.springframework.scheduling.annotation.Scheduled;
+
+import java.time.ZoneOffset;
+import java.util.TimeZone;
 
 /**
  * Created by lisa.wei on 2018/7/31.
  */
 
-public class MyTask extends TimerTask
+public class MyTask
 {
-    private static boolean isRunning = false;
-    @Override
-    public void run()
-    {
-        if (!isRunning)
-        {
-            isRunning = true;
-            //执行任务
-            System.out.println("现在时间：" + System.currentTimeMillis());
-            isRunning = false;
-        }
-        else
-        {
-            System.out.println("上次任务还在执行");
-        }
+    @Scheduled(cron = "0 0/2 * * * ?")  //每隔两分钟执行
+    private void work() {
+        System.out.println(getUTCTime());
+    }
+
+    public static String getUTCTime(){
+        return FastDateFormat.getInstance("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", TimeZone.getTimeZone(ZoneOffset.UTC)).format(System.currentTimeMillis());
     }
 }
